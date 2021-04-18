@@ -1,15 +1,16 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <MarkingForm></MarkingForm>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import MarkingForm from '../components/markingForm'
 
 export default {
   name: 'Home',
   components: {
+    MarkingForm
   }
 }
 </script>
