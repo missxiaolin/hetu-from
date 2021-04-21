@@ -1,7 +1,23 @@
 <template>
   <el-container style="background: white">
     <leftElList></leftElList>
-    <el-container class="bd"> </el-container>
+    <el-container class="bd">
+      <el-header style="line-height: 60px; border-bottom: 1px solid #ccc">
+        <span style="margin: 0 10px">
+          <span>请选择模板：</span>
+          <el-select v-model="tempKey" style="display: inline-block !important">
+            <template v-for="(item, index) in tempList">
+              <el-option
+                v-if="!item.hidden"
+                :key="index"
+                :label="item.label"
+                :value="item"
+              ></el-option>
+            </template>
+          </el-select>
+        </span>
+      </el-header>
+    </el-container>
   </el-container>
 </template>
 
@@ -12,9 +28,31 @@ export default {
   data() {
     return {
       tempKey: {
-        label: "ebs",
-        value: "ebs",
+        label: "e",
+        value: "e",
       },
+      tempList: [
+        {
+          label: 'e + Element-UI',
+          value: 'e',
+          hidden: false
+        },
+        {
+          label: 'h',
+          value: 'h',
+          hidden: true
+        },
+        {
+          label: '普通Element-UI',
+          value: 'element',
+          hidden: true
+        },
+        {
+          label: 'React + Ant Design',
+          value: 'react',
+          hidden: false
+        }
+      ],
     };
   },
 };
