@@ -17,14 +17,24 @@
           </el-select>
         </span>
       </el-header>
+      <el-main>
+        <!-- 这里是主程序 -->
+        <form-main :data="widgetForm"></form-main>
+      </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
 import leftElList from "./formLeft";
+// 中间主页面
+import formMain from './formMain'
 export default {
   name: "markingForm",
+  components: {
+    leftElList,
+    formMain
+  },
   data() {
     return {
       tempKey: {
