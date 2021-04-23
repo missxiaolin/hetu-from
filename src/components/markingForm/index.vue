@@ -22,18 +22,24 @@
         <form-main :data="widgetForm"></form-main>
       </el-main>
     </el-container>
+    <el-aside class="bd">
+      <form-right :data="widgetFormSelect"></form-right>
+    </el-aside>
   </el-container>
 </template>
 
 <script>
 import leftElList from "./formLeft";
 // 中间主页面
-import formMain from './formMain'
+import formMain from "./formMain";
+// 右边设置属性
+import formRight from "./formRight";
 export default {
   name: "markingForm",
   components: {
     leftElList,
-    formMain
+    formMain,
+    formRight,
   },
   data() {
     return {
@@ -43,25 +49,25 @@ export default {
       },
       tempList: [
         {
-          label: 'e + Element-UI',
-          value: 'e',
-          hidden: false
+          label: "e + Element-UI",
+          value: "e",
+          hidden: false,
         },
         {
-          label: 'h',
-          value: 'h',
-          hidden: true
+          label: "h",
+          value: "h",
+          hidden: true,
         },
         {
-          label: '普通Element-UI',
-          value: 'element',
-          hidden: true
+          label: "普通Element-UI",
+          value: "element",
+          hidden: true,
         },
         {
-          label: 'React + Ant Design',
-          value: 'react',
-          hidden: false
-        }
+          label: "React + Ant Design",
+          value: "react",
+          hidden: false,
+        },
       ],
     };
   },
