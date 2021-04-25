@@ -19,11 +19,11 @@
       </el-header>
       <el-main>
         <!-- 这里是主程序 -->
-        <form-main :data="widgetForm"></form-main>
+        <form-main ></form-main>
       </el-main>
     </el-container>
     <el-aside class="bd">
-      <form-right :data="widgetFormSelect"></form-right>
+      <form-right ></form-right>
     </el-aside>
   </el-container>
 </template>
