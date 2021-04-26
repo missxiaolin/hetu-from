@@ -1,6 +1,6 @@
 <template>
   <el-container style="background: white">
-    <leftElList></leftElList>
+    <leftElList :tempKey="tempKey"></leftElList>
     <el-container class="bd">
       <el-header style="line-height: 60px; border-bottom: 1px solid #ccc">
         <span style="margin: 0 10px">
