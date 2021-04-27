@@ -19,11 +19,11 @@
       </el-header>
       <el-main>
         <!-- 这里是主程序 -->
-        <form-main ></form-main>
+        <form-main :data="widgetForm"></form-main>
       </el-main>
     </el-container>
     <el-aside class="bd">
-      <form-right ></form-right>
+      <form-right :data="widgetFormSelect"></form-right>
     </el-aside>
   </el-container>
 </template>
@@ -32,6 +32,7 @@
 import leftElList from "./formLeft";
 // 中间主页面
 import formMain from "./formMain";
+import { defaultJson } from "../tool/element/default";
 // 右边设置属性
 import formRight from "./formRight";
 export default {
@@ -69,6 +70,9 @@ export default {
           hidden: false,
         },
       ],
+      // 中间拖拽表格数据
+      widgetForm: { ...defaultJson },
+      widgetFormSelect: {}, // 默认是对象
     };
   },
 };
