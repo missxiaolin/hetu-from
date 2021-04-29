@@ -7,6 +7,8 @@ import './plugins/element.js'
 import 'ant-design-vue/dist/antd.css';
 import Antd from 'ant-design-vue';
 
+import './assets/css/index.scss'
+
 // 剪切板
 import VueClipboard from 'vue-clipboard2'
 

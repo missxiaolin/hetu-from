@@ -1,0 +1,26 @@
+@import "./common.scss";
+@import "./markdown.scss";
+
+// 补充样式 - 便于拖拽观看
+.main-content {
+    .content-body {
+        // min-height: 150px;
+        border: 1px solid #0cb46e !important;
+        margin-bottom: 20px;
+    }
+    .e-row {
+        min-height: 60px;
+        margin: 5px;
+        border: 1px solid blue !important;
+    }
+    .e-col {
+        margin: 5px;
+    }
+    .dialog-info {
+        border: 1px solid #ccc;
+    }
+
+    .form-box {
+        margin: 10px 0;
+    }
+}
