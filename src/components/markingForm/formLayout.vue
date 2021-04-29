@@ -1,60 +1,55 @@
 <template>
-  <div>
-    <!-- 我是layout组件，我可以继续拖拽{{data}} -->
-    <vuedraggable
-      tag="div"
-      :class="[
-        data.className || '',
-        { selected: selectKey === selectWidget.item.key },
-      ]"
-      style="border: 1px dashed #999; position: relative"
-      v-model="data.children"
-      v-bind="{ group: 'people', ghostClass: 'ghost' }"
-      @add="handleWidgetLayoutAdd"
-      @click.prevent.stop.native="handleSelectWidget"
-    >
-      <template v-for="(item, idx) in data.children">
-        <!-- 循环嵌套layout -->
-        <template v-if="item.layout">
-          <!-- 内置slot，展示text -->
-          <form-layout :data="item" :key="idx" :parent="data" :index="idx">{{
-            item.text
-          }}</form-layout>
-          <div
-            :key="idx + Math.random()"
-            class="widget-view-action widget-col-action"
-          >
-            <i
-              class="iconfont icon-trash"
-              @click.stop="handleWidgetDelete(idx)"
-            ></i>
-          </div>
-        </template>
-        <!-- 组件 - 无法进行嵌套 -->
-        <template v-else>
-          <form-element
-            :data="item"
-            :key="idx"
-            :parent="data"
-            :index="idx"
-          ></form-element>
-        </template>
+  <!-- 我是layout组件，我可以继续拖拽{{data}} -->
+  <vuedraggable
+    tag="div"
+    :class="[
+      data.className || '',
+      { selected: selectKey === selectWidget.item.key },
+    ]"
+    style="border: 1px dashed #999; position: relative"
+    v-model="data.children"
+    v-bind="{ group: 'people', ghostClass: 'ghost' }"
+    @add="handleWidgetLayoutAdd"
+    @click.prevent.stop.native="handleSelectWidget"
+  >
+    <template v-for="(item, idx) in data.children">
+      <!-- 循环嵌套layout -->
+      <template v-if="item.layout">
+        <!-- 内置slot，展示text -->
+        <form-layout :data="item" :key="idx" :parent="data" :index="idx">{{
+          item.text
+        }}</form-layout>
+        <div
+          :key="idx + Math.random()"
+          class="widget-view-action widget-col-action"
+        >
+          <i
+            class="iconfont icon-trash"
+            @click.stop="handleWidgetDelete(idx)"
+          ></i>
+        </div>
       </template>
-      <!-- 这里不能添加按钮，添加后无法拖拽元素进来 -->
-      <slot></slot>
-    </vuedraggable>
-  </div>
+      <!-- 组件 - 无法进行嵌套 -->
+      <template v-else>
+        <form-element
+          :data="item"
+          :key="idx"
+          :parent="data"
+          :index="idx"
+        ></form-element>
+      </template>
+    </template>
+    <!-- 这里不能添加按钮，添加后无法拖拽元素进来 -->
+    <slot></slot>
+  </vuedraggable>
 </template>
 
 <script>
 import vuedraggable from "vuedraggable";
-import { addDraggerWidget } from '../tool/tool.js'
-
-// 组件循环
-import formLayout from "./formLayout";
-import formElement from "./formElement";
-
 import { mapGetters } from "vuex";
+import formLayout from "./formLayout";
+import { addDraggerWidget } from "../tool/tool.js";
+import formElement from "./formElement";
 
 export default {
   name: "formLayout",
