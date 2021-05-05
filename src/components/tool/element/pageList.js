@@ -24,16 +24,16 @@ export const pageList = [
                         tag: 'div',
                         layout: true,
                         isRow: true, // 标记是row
-                        className: 'eboss-row',
-                        label: 'row-eboss-row',
+                        className: 'e-row',
+                        label: 'row-e-row',
                         props: [],
                         children: [
                             {
                                 type: 1,
                                 tag: 'div',
                                 layout: true,
-                                className: 'eboss-col col-flex',
-                                label: 'col-eboss-col',
+                                className: 'e-col col-flex',
+                                label: 'col-e-col',
                                 props: [],
                                 children: [
                                     {
@@ -58,8 +58,8 @@ export const pageList = [
                                 type: 1,
                                 tag: 'div',
                                 layout: true,
-                                className: 'eboss-col col-flex',
-                                label: 'col-eboss-col',
+                                className: 'e-col col-flex',
+                                label: 'col-e-col',
                                 props: [],
                                 children: [
                                     {
@@ -114,16 +114,16 @@ export const pageList = [
                         tag: 'div',
                         layout: true,
                         isRow: true, // 标记是row
-                        className: 'eboss-row',
-                        label: 'row-eboss-row',
+                        className: 'e-row',
+                        label: 'row-e-row',
                         props: [],
                         children: [
                             {
                                 type: 1,
                                 tag: 'div',
                                 layout: true,
-                                className: 'eboss-col col-flex',
-                                label: 'col-eboss-col',
+                                className: 'e-col col-flex',
+                                label: 'col-e-col',
                                 props: [],
                                 children: []
                             },
@@ -131,8 +131,8 @@ export const pageList = [
                                 type: 1,
                                 tag: 'div',
                                 layout: true,
-                                className: 'eboss-col col-flex',
-                                label: 'col-eboss-col',
+                                className: 'e-col col-flex',
+                                label: 'col-e-col',
                                 props: [],
                                 children: []
                             }
@@ -142,7 +142,7 @@ export const pageList = [
                         type: 1,
                         tag: 'div',
                         label: '重置和查询',
-                        className: 'eboss-inquire-button text-center',
+                        className: 'e-inquire-button text-center',
                         highType: '1',
                         notes: '重置和查询按钮',
                         props: [],
@@ -240,7 +240,7 @@ export const pageList = [
                 type: 1,
                 tag: 'div',
                 label: '表格顶部按钮',
-                className: 'eboss-feature-btn',
+                className: 'e-feature-btn',
                 highType: '3',
                 notes: '表格顶部按钮 - 一般是新建等',
                 props: [],
@@ -554,16 +554,16 @@ export const pageList = [
                                 tag: 'div',
                                 layout: true,
                                 isRow: true, // 标记是row
-                                className: 'eboss-row',
-                                label: 'row-eboss-row',
+                                className: 'e-row',
+                                label: 'row-e-row',
                                 props: [],
                                 children: [
                                     {
                                         type: 1,
                                         tag: 'div',
                                         layout: true,
-                                        className: 'eboss-col col-flex',
-                                        label: 'col-eboss-col',
+                                        className: 'e-col col-flex',
+                                        label: 'col-e-col',
                                         props: [],
                                         children: []
                                     },
@@ -571,8 +571,8 @@ export const pageList = [
                                         type: 1,
                                         tag: 'div',
                                         layout: true,
-                                        className: 'eboss-col col-flex',
-                                        label: 'col-eboss-col',
+                                        className: 'e-col col-flex',
+                                        label: 'col-e-col',
                                         props: [],
                                         children: []
                                     }
@@ -621,16 +621,16 @@ export const pageList = [
                                 tag: 'div',
                                 layout: true,
                                 isRow: true, // 标记是row
-                                className: 'eboss-row',
-                                label: 'row-eboss-row',
+                                className: 'e-row',
+                                label: 'row-e-row',
                                 props: [],
                                 children: [
                                     {
                                         type: 1,
                                         tag: 'div',
                                         layout: true,
-                                        className: 'eboss-col col-flex',
-                                        label: 'col-eboss-col',
+                                        className: 'e-col col-flex',
+                                        label: 'col-e-col',
                                         props: [],
                                         children: []
                                     },
@@ -638,8 +638,8 @@ export const pageList = [
                                         type: 1,
                                         tag: 'div',
                                         layout: true,
-                                        className: 'eboss-col col-flex',
-                                        label: 'col-eboss-col',
+                                        className: 'e-col col-flex',
+                                        label: 'col-e-col',
                                         props: [],
                                         children: []
                                     }
@@ -688,16 +688,16 @@ export const pageList = [
                                 tag: 'div',
                                 layout: true,
                                 isRow: true, // 标记是row
-                                className: 'eboss-row',
-                                label: 'row-eboss-row',
+                                className: 'e-row',
+                                label: 'row-e-row',
                                 props: [],
                                 children: [
                                     {
                                         type: 1,
                                         tag: 'div',
                                         layout: true,
-                                        className: 'eboss-col col-flex',
-                                        label: 'col-eboss-col',
+                                        className: 'e-col col-flex',
+                                        label: 'col-e-col',
                                         props: [],
                                         children: []
                                     },
@@ -705,8 +705,8 @@ export const pageList = [
                                         type: 1,
                                         tag: 'div',
                                         layout: true,
-                                        className: 'eboss-col col-flex',
-                                        label: 'col-eboss-col',
+                                        className: 'e-col col-flex',
+                                        label: 'col-e-col',
                                         props: [],
                                         children: []
                                     }
@@ -720,7 +720,7 @@ export const pageList = [
                 type: 1,
                 tag: 'div',
                 label: '取消和保存',
-                className: 'eboss-inquire-button text-center',
+                className: 'e-inquire-button text-center',
                 highType: '2',
                 notes: '取消和保存按钮',
                 props: [],

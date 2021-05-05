@@ -16,35 +16,35 @@ export const layoutList = [
         tag: 'div',
         layout: true,
         isRow: true, // 标记是row
-        className: 'eboss-row',
-        label: 'row-eboss-row',
+        className: 'e-row',
+        label: 'row-e-row',
         props: [],
         children: [
             {
                 type: 1,
                 tag: 'div',
                 layout: true,
-                className: 'eboss-col col-flex',
-                label: 'col-eboss-col',
+                className: 'e-col col-flex',
+                label: 'col-e-col',
                 props: []
             },
             {
                 type: 1,
                 tag: 'div',
                 layout: true,
-                className: 'eboss-col col-flex',
-                label: 'col-eboss-col',
+                className: 'e-col col-flex',
+                label: 'col-e-col',
                 props: []
             }
         ]
     },
-    // eboss-col 废弃这个组件的拖拽，改成父类 eboss-row 去控制
+    // e-col 废弃这个组件的拖拽，改成父类 e-row 去控制
     // {
     //   type: 1,
     //   tag: 'div',
     //   layout: true,
-    //   className: 'eboss-col col-flex',
-    //   label: 'col-eboss-col',
+    //   className: 'e-col col-flex',
+    //   label: 'col-e-col',
     //   props: []
     // }
 ]

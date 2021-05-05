@@ -7,7 +7,7 @@ export function getTag(tag) {
     const template = store.getters.selectTemplate.value
     console.log(template, tag)
     let ret = ''
-    if (template === 'eboss') {
+    if (template === 'e') {
         ret = getElementTag(tag)
     } else if (template === 'react') {
         ret = getAntDesignTag(tag)
