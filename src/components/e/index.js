@@ -3,10 +3,13 @@ import config from './config'
 import resetSearchBtns from './resetSearchBtns'
 // 保存和取消
 import cancelSaveBtns from './cancelSaveBtns'
+// 表格头部按钮
+import tableHeaderBtn from './tableHeaderBtn'
 
 const components = [
   resetSearchBtns,
-  cancelSaveBtns
+  cancelSaveBtns,
+  tableHeaderBtn
 ]
 
 const install = function (Vue) {
