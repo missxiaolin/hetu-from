@@ -91,6 +91,7 @@ export default {
   font-size: 24px;
   border-bottom: 1px solid #ccc;
   margin-bottom: 0;
+  height: 60px;
 }
 .el-list {
   width: 100%;

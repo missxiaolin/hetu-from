@@ -17,6 +17,11 @@ VueClipboard.config.autoSetContainer = true
 Vue.use(VueClipboard)
 Vue.use(Antd)
 
+// 我们自己封装的组件实例
+import myElement from './components/e/index'
+// 使用插件
+Vue.use(myElement)
+
 Vue.config.productionTip = false
 
 new Vue({
