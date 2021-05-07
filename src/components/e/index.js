@@ -5,11 +5,14 @@ import resetSearchBtns from './resetSearchBtns'
 import cancelSaveBtns from './cancelSaveBtns'
 // 表格头部按钮
 import tableHeaderBtn from './tableHeaderBtn'
+// 表格组价
+import ebTable from './ebTable'
 
 const components = [
   resetSearchBtns,
   cancelSaveBtns,
-  tableHeaderBtn
+  tableHeaderBtn,
+  ebTable
 ]
 
 const install = function (Vue) {
