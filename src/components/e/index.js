@@ -9,13 +9,16 @@ import tableHeaderBtn from './tableHeaderBtn'
 import ebTable from './ebTable'
 // 返回列表
 import backToList from './backToList'
+// body-header 标题
+import bodyHeader from './bodyHeader'
 
 const components = [
   resetSearchBtns,
   cancelSaveBtns,
   tableHeaderBtn,
   ebTable,
-  backToList
+  backToList,
+  bodyHeader
 ]
 
 const install = function (Vue) {
