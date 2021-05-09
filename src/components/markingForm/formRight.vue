@@ -56,12 +56,20 @@
         </template>
       </el-tab-pane>
     </el-tabs>
+    <fnListDialog ref="fnListDialog" :data="data" :fnData="showFnListSelectItem"></fnListDialog>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { addDraggerWidget } from '../tool/tool.js'
+import fnListDialog from './components/fnListDialog'
+
 export default {
   name: "formRight",
+  components: {
+    fnListDialog
+  },
   mixins: [],
   props: {
     data: {
