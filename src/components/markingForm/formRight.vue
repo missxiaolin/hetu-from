@@ -43,6 +43,18 @@
           </li>
         </ul>
       </el-tab-pane>
+      <el-tab-pane label="方法属性" name="form">
+        <template v-if="data.key">
+          <div>
+            <el-button type="primary" @click="addFunc">添加方法</el-button>
+          </div>
+          <div v-for="(item, index) in selectedWidgetFn" :key="index">
+            <!-- 点击出现弹窗，选中方法 template -->
+            {{item.body}}
+            <el-button @click="seletFnTemplate(item)">{{item.name}} - {{item.fn}}</el-button>
+          </div>
+        </template>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
