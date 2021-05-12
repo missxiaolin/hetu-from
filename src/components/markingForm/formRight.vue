@@ -57,6 +57,22 @@
       </el-tab-pane>
     </el-tabs>
     <fnListDialog ref="fnListDialog" :data="data" :fnData="showFnListSelectItem"></fnListDialog>
+    <el-dialog
+      title="设置组件pros属性中的props"
+      :visible.sync="showWidgetProps"
+      :close-on-click-modal="false">
+      <eb-table
+        v-bind="tableProps"
+        selectType="checkbox"
+      ></eb-table>
+    </el-dialog>
+    <el-dialog
+      title="设置组件table属性中的props"
+      :visible.sync="showTableProps"
+      :close-on-click-modal="false"
+      width="70%">
+      <table-props-list :data="data"></table-props-list>
+    </el-dialog>
   </div>
 </template>
 
@@ -64,11 +80,13 @@
 import { mapGetters } from 'vuex'
 import { addDraggerWidget } from '../tool/tool.js'
 import fnListDialog from './components/fnListDialog'
+import TablePropsList from './components/tablePropsList'
 
 export default {
   name: "formRight",
   components: {
-    fnListDialog
+    fnListDialog,
+    TablePropsList
   },
   mixins: [],
   props: {
