@@ -3,9 +3,9 @@
  * notes：注释
  * params：参数
  * body：函数体
-  * $type$: 请求方法
-  * $url$: 请求url
-  * $retData$是否接收返回数据
+ * $type$: 请求方法
+ * $url$: 请求url
+ * $retData$是否接收返回数据
  * linkFn：关联方法
  */
 import { guid } from './tool'
