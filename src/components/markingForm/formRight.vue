@@ -83,6 +83,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { getPropsList } from '../tool/propsList.js'
 import { addDraggerWidget } from "../tool/tool.js";
 import fnListDialog from "./components/fnListDialog";
 import TablePropsList from "./components/tablePropsList";
@@ -137,9 +138,9 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['selectWidget']),
-    ...mapGetters(['selectedWidgetFn']),
-    ...mapGetters(['selectTemplate']),
+    ...mapGetters(["selectWidget"]),
+    ...mapGetters(["selectedWidgetFn"]),
+    ...mapGetters(["selectTemplate"]),
     tableProps() {
       // :columns="data.children[0].props.columns" :data="data.children[0].props.dataList"
       let columns = [
@@ -191,6 +192,67 @@ export default {
         columns: columns,
         data: data,
       };
+    },
+  },
+  created() {},
+  mounted() {},
+  methods: {
+    change(val) {
+      console.log(val);
+    },
+    // 添加和删除row下的col数量
+    rowChange(currentValue, oldValue) {
+      if (currentValue > oldValue) {
+        // 增加一个
+        let tabCount = this.data.tabCount;
+        let col = {
+          type: 1,
+          tag: "div",
+          layout: true,
+          className: "eboss-col col-flex",
+          label: "col-eboss-col",
+          props: [],
+        };
+        let returnItem = addDraggerWidget(col, tabCount, this.selectTemplate);
+        // 给返回数据添加双向绑定
+        this.data.children.push(returnItem);
+        // this.$set(this.data.children, this.data.children.length -1, returnItem)
+      } else {
+        // 减少一个
+        this.data.children.pop();
+      }
+    },
+    // 删除元素
+    handleWidgetDelete() {
+      // console.log('删除元素', this.widgetFormSelect)
+      // 1. 找到父元素 2. 找到索引
+      let parent = this.widgetFormSelect.parent;
+      let index = this.widgetFormSelect.index;
+      parent.children.splice(index, 1);
+      // 3. 删除元素，那么当前选择的元素就么有了，就要清空store中保存的数据
+    },
+    // 给当前元素添加方法events，给当前元素events添加数据
+    addFunc() {
+      // 给当前元素的events添加数据
+      // 获取选择的元素
+      let fnItem = {
+        fn: `type_${createHash(8)}`,
+        notes: "",
+        body: "",
+        id: guid(),
+      };
+      // 添加关联 - 注意这里要区分高阶组件
+      this.selectWidget.item.events.push(fnItem);
+      this.$store.commit("set_selectedWidgetFn", fnItem);
+    },
+    // 显示fndialog，关联数据
+    seletFnTemplate (item) {
+      this.$refs.fnListDialog.show(item)
+      this.showFnListSelectItem = item
+    },
+    // 获取当前元素的props列表
+    handlerWidgetSetProps () {
+      this.widgetProps = getPropsList(this.data.tag)
     },
   },
 };
