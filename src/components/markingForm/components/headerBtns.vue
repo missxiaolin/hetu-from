@@ -7,15 +7,15 @@ export default {
   props: {},
   data() {
     return {
-      tempKey: "eboss",
+      tempKey: "e",
       tempList: [
         {
-          label: "eboss",
-          value: "eboss",
+          label: "e",
+          value: "e",
         },
         {
-          label: "hydra",
-          value: "hydra",
+          label: "h",
+          value: "h",
         },
         {
           label: "普通Element-UI",
