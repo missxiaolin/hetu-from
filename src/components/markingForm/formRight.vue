@@ -83,8 +83,9 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { getPropsList } from '../tool/propsList.js'
+import { getPropsList } from "../tool/propsList.js";
 import { addDraggerWidget } from "../tool/tool.js";
+import { guid, createHash } from "../tool/tool.js";
 import fnListDialog from "./components/fnListDialog";
 import TablePropsList from "./components/tablePropsList";
 
@@ -246,13 +247,52 @@ export default {
       this.$store.commit("set_selectedWidgetFn", fnItem);
     },
     // 显示fndialog，关联数据
-    seletFnTemplate (item) {
-      this.$refs.fnListDialog.show(item)
-      this.showFnListSelectItem = item
+    seletFnTemplate(item) {
+      this.$refs.fnListDialog.show(item);
+      this.showFnListSelectItem = item;
     },
     // 获取当前元素的props列表
-    handlerWidgetSetProps () {
-      this.widgetProps = getPropsList(this.data.tag)
+    handlerWidgetSetProps() {
+      this.widgetProps = getPropsList(this.data.tag);
+    },
+    // 给元素添加props属性
+    handlerSetProps(item) {
+      // 级联选择器 el-cascader 设置数据源
+      if (
+        this.selectWidget.item.tag === "el-cascader" &&
+        item.key === "options"
+      ) {
+        debugger;
+      }
+      if (item.value === undefined) {
+        this.$message.error(`请设置或选择${item.key}的值`);
+        return;
+      }
+      let flag = false;
+      let index = 0;
+      // 如果有就是更新，没有就是添加
+      this.data.props.forEach((prop, idx) => {
+        if (item.key === prop.key) {
+          flag = true;
+          index = idx;
+        }
+      });
+      if (flag) {
+        this.data.props[index].value = item.value;
+      } else {
+        this.data.props.push({
+          isData: false,
+          key: item.key,
+          value: item.value,
+          isBool: item.isBool,
+        });
+      }
+    },
+    // 给有 props 属性的组件，添加props属性
+    addWidgetProps(item) {
+      // 显示一个弹窗，然后弹窗是属性列表，自己勾选
+      console.log(item);
+      this.showWidgetProps = true;
     },
   },
 };
