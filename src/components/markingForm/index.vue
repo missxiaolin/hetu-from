@@ -16,6 +16,9 @@
             </template>
           </el-select>
         </span>
+        <el-button type="primary" size="medium" @click="importJson"
+          >导入JSON</el-button
+        >
       </el-header>
       <el-main>
         <!-- 这里是主程序 -->
@@ -29,7 +32,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 import leftElList from "./formLeft";
 // 中间主页面
@@ -46,22 +49,22 @@ export default {
     formRight,
   },
   computed: {
-    ...mapGetters(['selectWidget'])
+    ...mapGetters(["selectWidget"]),
   },
   watch: {
     // 中间选中的组件数据，传递给下一个组件
     selectWidget: {
-      handler (val) {
-        this.widgetFormSelect = val.item
+      handler(val) {
+        this.widgetFormSelect = val.item;
       },
-      deep: true
+      deep: true,
     },
     tempKey: {
-      handler (val) {
-        this.$store.commit('set_selectTemplate', val)
+      handler(val) {
+        this.$store.commit("set_selectTemplate", val);
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   data() {
     return {
@@ -93,8 +96,15 @@ export default {
       ],
       // 中间拖拽表格数据
       widgetForm: { ...defaultJson },
-      widgetFormSelect: {}, // 默认是对象
+      widgetFormSelect: {}, // 默认是对象 
     };
+  },
+  mounted() {},
+  methods: {
+    // 导入Json
+    importJson() {
+      this.$message.error("功能开发中");
+    },
   },
 };
 </script>
