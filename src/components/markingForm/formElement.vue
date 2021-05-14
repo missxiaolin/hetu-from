@@ -104,7 +104,7 @@
         </el-radio-group>
       </div>
     </template>
-    <template v-if="data.tag === 'el-checkbox-group'">
+    <template v-if="data.tag === 'el-checkbox-group' && data.children">
       <label for class="form-label" style="width: 105px">{{
         data.label
       }}</label>

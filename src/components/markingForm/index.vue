@@ -29,18 +29,39 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import leftElList from "./formLeft";
 // 中间主页面
 import formMain from "./formMain";
 import { defaultJson } from "../tool/element/default";
 // 右边设置属性
 import formRight from "./formRight";
+
 export default {
   name: "markingForm",
   components: {
     leftElList,
     formMain,
     formRight,
+  },
+  computed: {
+    ...mapGetters(['selectWidget'])
+  },
+  watch: {
+    // 中间选中的组件数据，传递给下一个组件
+    selectWidget: {
+      handler (val) {
+        this.widgetFormSelect = val.item
+      },
+      deep: true
+    },
+    tempKey: {
+      handler (val) {
+        this.$store.commit('set_selectTemplate', val)
+      },
+      immediate: true
+    }
   },
   data() {
     return {
