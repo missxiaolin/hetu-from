@@ -19,6 +19,9 @@
         <el-button type="primary" size="medium" @click="importJson"
           >导入JSON</el-button
         >
+        <el-button type="primary" size="medium" @click="clearJson"
+          >清空数据</el-button
+        >
       </el-header>
       <el-main>
         <!-- 这里是主程序 -->
@@ -96,7 +99,7 @@ export default {
       ],
       // 中间拖拽表格数据
       widgetForm: { ...defaultJson },
-      widgetFormSelect: {}, // 默认是对象 
+      widgetFormSelect: {}, // 默认是对象
     };
   },
   mounted() {},
@@ -104,6 +107,11 @@ export default {
     // 导入Json
     importJson() {
       this.$message.error("功能开发中");
+    },
+    // 清空元素列表
+    clearJson() {
+      // console.log('清空元素')
+      this.widgetForm = { ...defaultJson };
     },
   },
 };
