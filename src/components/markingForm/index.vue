@@ -25,6 +25,9 @@
         <el-button type="primary" size="medium" @click="getJson"
           >复制JSON</el-button
         >
+        <el-button type="primary" size="medium" @click="getCode"
+          >复制代码</el-button
+        >
       </el-header>
       <el-main>
         <!-- 这里是主程序 -->
@@ -57,6 +60,28 @@
         <el-button @click="downloadJson">下载文件（json）</el-button>
       </span>
     </el-dialog>
+    <!-- Code dialog -->
+    <el-dialog
+      title="页面代码"
+      :visible.sync="getCodeShow"
+      :destroy-on-close="true"
+      :close-on-click-modal="false"
+      width="1200px"
+      center
+    >
+      <div id="codeeditor" style="height: 400px; width: 100%">
+        {{ codeTemplate }}
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button
+          class="json-btn"
+          v-clipboard:copy="codeCopyValue"
+          v-clipboard:success="onCopy"
+          type="primary"
+          >复制Code</el-button
+        >
+      </span>
+    </el-dialog>
   </el-container>
 </template>
 
@@ -69,6 +94,8 @@ import formMain from "./formMain";
 import { defaultJson } from "../tool/element/default";
 // 右边设置属性
 import formRight from "./formRight";
+// 解析
+import { compiler } from "../../compile/index";
 
 export default {
   name: "markingForm",
@@ -125,13 +152,22 @@ export default {
       ],
       // 中间拖拽表格数据
       widgetForm: { ...defaultJson },
+      // 中间选中组件，右边战术他们的字段属性
       widgetFormSelect: {}, // 默认是对象
       // 弹窗显示JSON数据
       getJSONShow: false,
+      // 弹窗显示Code数据
+      getCodeShow: false,
+      // 显示test
+      getTestShow: false,
       // 需要显示的JSON数据
-      jsonTemplate: '',
+      jsonTemplate: "",
+      codeTemplate: "",
       // 复制的json数据
-      jsonCopyValue: '',
+      jsonCopyValue: "",
+      // 复制的code数据
+      codeCopyValue: "",
+      showVersionStatus: false,
     };
   },
   mounted() {},
@@ -170,25 +206,74 @@ export default {
       });
     },
     // 点击复制，触发的方法
-    onCopy () {
-      this.$message.success('复制成功')
+    onCopy() {
+      this.$message.success("复制成功");
     },
-    downloadJson () {
-      let data = this.jsonCopyValue
-      const filename= 'code.json'
-      if(typeof data === 'object'){
+    downloadJson() {
+      let data = this.jsonCopyValue;
+      const filename = "code.json";
+      if (typeof data === "object") {
         // 将json转化为字符串
-        data = JSON.stringify(data, undefined, 4)
+        data = JSON.stringify(data, undefined, 4);
       }
-      var blob = new Blob([data], {type: 'text/json'}),
-      e = document.createEvent('MouseEvents'),
-      a = document.createElement('a')
-      a.download = filename
-      a.href = window.URL.createObjectURL(blob)
-      a.dataset.downloadurl = ['text/json', a.download, a.href].join(':')
+      var blob = new Blob([data], { type: "text/json" }),
+        e = document.createEvent("MouseEvents"),
+        a = document.createElement("a");
+      a.download = filename;
+      a.href = window.URL.createObjectURL(blob);
+      a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
       // 模拟下载文件
-      e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
-      a.dispatchEvent(e)
+      e.initMouseEvent(
+        "click",
+        true,
+        false,
+        window,
+        0,
+        0,
+        0,
+        0,
+        0,
+        false,
+        false,
+        false,
+        false,
+        0,
+        null
+      );
+      a.dispatchEvent(e);
+    },
+    // 点击复制代码
+    getCode() {
+      // 选择模板，根据模板生成代码
+      this.getCodeShow = true;
+      // 获取解析后的 vue code 数据
+      // console.log('传递进去的json数据', this.widgetForm)
+      let ret = compiler(this.widgetForm, {
+        template: true,
+        templateName: this.tempKey,
+      });
+      if (!ret) return;
+      // // console.log(ret.templateStr)
+      this.codeTemplate = ret.templateStr;
+      this.$nextTick(() => {
+        // eslint-disable-next-line
+        let editor = ace.edit("codeeditor");
+        editor.$blockScrolling = Infinity;
+        editor.setFontSize(16);
+        editor.setOptions({
+          enableBasicAutocompletion: true,
+          enableSnippets: true,
+          enableLiveAutocompletion: true,
+        });
+        editor.session.setMode("ace/mode/javascript");
+        // editor.getSession().on('change', function (e) {
+        //   // 内容变化触发方法
+        //   // console.log(e)
+        // })
+        editor.setTheme("ace/theme/monokai");
+        // 记录要复制的数据，注意：必须转字符串
+        this.codeCopyValue = JSON.stringify(this.codeTemplate);
+      });
     },
   },
 };
