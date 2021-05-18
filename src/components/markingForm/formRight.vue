@@ -210,8 +210,8 @@ export default {
           type: 1,
           tag: "div",
           layout: true,
-          className: "eboss-col col-flex",
-          label: "col-eboss-col",
+          className: "e-col col-flex",
+          label: "col-e-col",
           props: [],
         };
         let returnItem = addDraggerWidget(col, tabCount, this.selectTemplate);

@@ -1,6 +1,6 @@
 <template>
-  <div class="eboss-inquire-button text-center">
-    <div class="eboss-inquire-button text-center">
+  <div class="e-inquire-button text-center">
+    <div class="e-inquire-button text-center">
       <el-button type="default" size="small">取消</el-button>
       <el-button type="primary" size="small">保存</el-button>
     </div>

@@ -41,7 +41,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <div class="eboss-row mt20 justify-end" v-if="showPagination">
+    <div class="e-row mt20 justify-end" v-if="showPagination">
       <div class="page-scroll">
         <template>
           <el-pagination
@@ -76,7 +76,7 @@ export default {
       type: Array,
       default: () => [],
     },
-    // 边框默认：true，适配Eboss风格
+    // 边框默认：true，适配e风格
     border: {
       type: Boolean,
       default: true,

@@ -7,8 +7,8 @@
     :destroy-on-close="true"
   >
     <!-- 选中方法 -->
-    <div class="eboss-row">
-      <div class="eboss-col col-flex">
+    <div class="e-row">
+      <div class="e-col col-flex">
         <div class="form-label" style="width: 120px"><i>*</i>请选择方法：</div>
         <div class="form-control">
           <el-select
@@ -27,7 +27,7 @@
           </el-select>
         </div>
       </div>
-      <div class="eboss-col col-flex">
+      <div class="e-col col-flex">
         <div class="form-label" style="width: 120px">是否init调用</div>
         <div class="form-control">
           <el-radio-group v-model="fnInit">
@@ -37,8 +37,8 @@
         </div>
       </div>
     </div>
-    <div class="eboss-row">
-      <div class="eboss-col col-flex">
+    <div class="e-row">
+      <div class="e-col col-flex">
         <div class="form-label" style="width: 120px"><i>*</i>方法类型：</div>
         <div class="form-control">
           <el-select
@@ -55,7 +55,7 @@
           </el-select>
         </div>
       </div>
-      <div class="eboss-col col-flex">
+      <div class="e-col col-flex">
         <div class="form-label" style="width: 120px"><i>*</i>方法名称：</div>
         <div class="form-control">
           <el-input
@@ -66,8 +66,8 @@
         </div>
       </div>
     </div>
-    <div class="eboss-row">
-      <div class="eboss-col col-flex">
+    <div class="e-row">
+      <div class="e-col col-flex">
         <div class="form-label" style="width: 120px">方法参数：</div>
         <div class="form-control">
           <el-input
@@ -76,7 +76,7 @@
           ></el-input>
         </div>
       </div>
-      <div class="eboss-col col-flex">
+      <div class="e-col col-flex">
         <div class="form-label" style="width: 120px">方法注释：</div>
         <div class="form-control">
           <el-input
@@ -86,8 +86,8 @@
         </div>
       </div>
     </div>
-    <div class="eboss-row">
-      <div class="eboss-col col-flex">
+    <div class="e-row">
+      <div class="e-col col-flex">
         <div class="form-label" style="width: 120px">请求方式：</div>
         <div class="form-control">
           <el-select v-model.trim="fnMethod" placeholder="请选择请求方式">
@@ -101,7 +101,7 @@
         </div>
       </div>
       <template v-if="(showFnListModel || {}).type === 1">
-        <div class="eboss-col col-flex">
+        <div class="e-col col-flex">
           <div class="form-label" style="width: 120px">网络请求地址：</div>
           <div class="form-control">
             <el-input
@@ -117,7 +117,7 @@
           (showFnListModel || {}).type === 3
         "
       >
-        <div class="eboss-col col-flex">
+        <div class="e-col col-flex">
           <div class="form-label" style="width: 120px">路由跳转地址：</div>
           <div class="form-control">
             <el-input
