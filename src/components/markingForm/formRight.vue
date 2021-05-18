@@ -1,7 +1,7 @@
 <template>
   <div class="right-box">
     <el-tabs v-model="activeName" :stretch="true" style="padding: 20px">
-      <el-tab-pane label="字段属性" name="widget" style="height: 60px">
+      <el-tab-pane label="字段属性" name="widget" style="height: 70px">
         <span>当前选中元素已添加的属性列表props：</span>
         <ul v-if="data.highType === '4'">
           <li

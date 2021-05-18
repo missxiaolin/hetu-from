@@ -139,7 +139,7 @@ function getNotes(node, tabStr) {
 }
 
 /**
- * 如果是 el-input-form 元素，需要特殊处理，基于eboss代码
+ * 如果是 el-input-form 元素，需要特殊处理，基于e代码
  * @param {*} node 元素
  * @param {*} tabStr 缩进
  */
