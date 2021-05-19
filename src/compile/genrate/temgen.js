@@ -4,7 +4,7 @@ import { hydraTemplate } from './template/hydra'
 import { reactTemplate } from './template/react'
 let temp = {
     hydra: hydraTemplate,
-    eboss: defaultTemplate,
+    e: defaultTemplate,
     react: reactTemplate
 }
 export function temgen(codeOpts = {}, opts = {}) {
@@ -20,7 +20,7 @@ export function temgen(codeOpts = {}, opts = {}) {
     } else {
         template = defaultTemplate
     }
-    debugger
+    // debugger
     if (opts.templateName.value === 'react') {
         let result = ejs.render(template, {
             className: 'demo',
