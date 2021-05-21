@@ -1,3 +1,4 @@
+
 <template>
   <el-container style="background: white">
     <leftElList :tempKey="tempKey"></leftElList>
@@ -92,6 +93,20 @@
         >
       </span>
     </el-dialog>
+    <!-- test -->
+    <el-dialog
+      title="生成Code"
+      :visible.sync="getTestShow"
+      :destroy-on-close="true"
+      :close-on-click-modal="false"
+      width="1200px"
+      center
+    >
+      <test></test>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="getTestShow = false">确定</el-button>
+      </span>
+    </el-dialog>
     <el-dialog
       title="更新日志"
       :visible.sync="showVersionStatus"
@@ -111,45 +126,28 @@
 </template>
 
 <script>
+import test from "../../views/test";
 import { mapGetters } from "vuex";
-
 import leftElList from "./formLeft";
 // 中间主页面
 import formMain from "./formMain";
-import { defaultJson } from "../tool/element/default";
 // 右边设置属性
 import formRight from "./formRight";
+import { defaultJson } from "../tool/element/default";
+import changelog from "../changelog/changelog";
 // 解析
 import { compiler } from "../../compile/index";
-
-import changelog from '../changelog/changelog'
-
 export default {
-  name: "markingForm",
+  name: "MarkingForm",
   components: {
-    leftElList,
     formMain,
     formRight,
-    changelog
+    leftElList,
+    test,
+    changelog,
   },
-  computed: {
-    ...mapGetters(["selectWidget"]),
-  },
-  watch: {
-    // 中间选中的组件数据，传递给下一个组件
-    selectWidget: {
-      handler(val) {
-        this.widgetFormSelect = val.item;
-      },
-      deep: true,
-    },
-    tempKey: {
-      handler(val) {
-        this.$store.commit("set_selectTemplate", val);
-      },
-      immediate: true,
-    },
-  },
+  mixins: [],
+  props: {},
   data() {
     return {
       tempKey: {
@@ -163,8 +161,8 @@ export default {
           hidden: false,
         },
         {
-          label: "h",
-          value: "h",
+          label: "hydra",
+          value: "hydra",
           hidden: true,
         },
         {
@@ -198,20 +196,38 @@ export default {
       showVersionStatus: false,
     };
   },
+  watch: {
+    // 中间选中的组件数据，传递给下一个组件
+    selectWidget: {
+      handler(val) {
+        this.widgetFormSelect = val.item;
+      },
+      deep: true,
+    },
+    tempKey: {
+      handler(val) {
+        this.$store.commit("set_selectTemplate", val);
+      },
+      immediate: true,
+    },
+  },
+  computed: {
+    ...mapGetters(["selectWidget"]),
+  },
+  created() {},
   mounted() {},
   methods: {
-    // 显示版本dialog
-    showVersion() {
-      this.showVersionStatus = true;
-    },
     // 导入Json
     importJson() {
       this.$message.error("功能开发中");
     },
-    // 清空元素列表
-    clearJson() {
-      // console.log('清空元素')
-      this.widgetForm = { ...defaultJson };
+    // 显示版本dialog
+    showVersion() {
+      this.showVersionStatus = true;
+    },
+    // 模板切换
+    temChange(val) {
+      console.log("切换了模板", val);
     },
     // 点击复制json
     getJson() {
@@ -236,10 +252,6 @@ export default {
         // 记录要复制的数据，注意：必须转字符串
         this.jsonCopyValue = JSON.stringify(this.widgetForm);
       });
-    },
-    // 点击复制，触发的方法
-    onCopy() {
-      this.$message.success("复制成功");
     },
     downloadJson() {
       let data = this.jsonCopyValue;
@@ -284,7 +296,6 @@ export default {
         template: true,
         templateName: this.tempKey,
       });
-      if (!ret) return;
       // // console.log(ret.templateStr)
       this.codeTemplate = ret.templateStr;
       this.$nextTick(() => {
@@ -306,6 +317,21 @@ export default {
         // 记录要复制的数据，注意：必须转字符串
         this.codeCopyValue = JSON.stringify(this.codeTemplate);
       });
+    },
+    // 点击复制，触发的方法
+    onCopy() {
+      this.$message.success("复制成功");
+    },
+    // 清空元素列表
+    clearJson() {
+      // console.log('清空元素')
+      this.widgetForm = { ...defaultJson };
+    },
+    // 加载生成的test，要手动code复制到src/views/test.vue中
+    // 不是为了查看组件，而是手动验证生成code是否可以运行
+    // 开发人员小峰哥专用，被人可以忽略即可
+    getTest() {
+      this.getTestShow = true;
     },
   },
 };
