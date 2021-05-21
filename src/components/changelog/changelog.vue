@@ -1,16 +1,16 @@
 <template>
   <div class="page-changelog">
-    <change-log></change-log>
+    <!-- <change-log></change-log> -->
   </div>
 </template>
 
 <script>
-import ChangeLog from "../../../CHANGELOG.zh-CN.md";
+// import ChangeLog from "../../../CHANGELOG.zh-CN.md";
 
 export default {
   name: "changelog",
   components: {
-    ChangeLog,
+    // ChangeLog,
   },
   mounted() {
     // const changeLog = this.$refs.changeLog;

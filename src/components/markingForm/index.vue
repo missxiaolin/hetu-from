@@ -28,6 +28,16 @@
         <el-button type="primary" size="medium" @click="getCode"
           >复制代码</el-button
         >
+        <!-- <el-button
+        type="primary"
+        size="medium"
+        @click="getTest">test</el-button> -->
+        <span @click="showVersion" style="margin-left: 10px; font-weight: 600"
+          >当前版本：
+          <span style="font-weight: 600; color: red; cursor: pointer"
+            >v0.0.3（点击查看详情）</span
+          >
+        </span>
       </el-header>
       <el-main>
         <!-- 这里是主程序 -->
@@ -82,6 +92,21 @@
         >
       </span>
     </el-dialog>
+    <el-dialog
+      title="更新日志"
+      :visible.sync="showVersionStatus"
+      :destroy-on-close="true"
+      :close-on-click-modal="false"
+      width="800px"
+      center
+    >
+      <changelog></changelog>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="showVersionStatus = false"
+          >确定</el-button
+        >
+      </span>
+    </el-dialog>
   </el-container>
 </template>
 
@@ -97,12 +122,15 @@ import formRight from "./formRight";
 // 解析
 import { compiler } from "../../compile/index";
 
+import changelog from '../changelog/changelog'
+
 export default {
   name: "markingForm",
   components: {
     leftElList,
     formMain,
     formRight,
+    changelog
   },
   computed: {
     ...mapGetters(["selectWidget"]),
@@ -172,6 +200,10 @@ export default {
   },
   mounted() {},
   methods: {
+    // 显示版本dialog
+    showVersion() {
+      this.showVersionStatus = true;
+    },
     // 导入Json
     importJson() {
       this.$message.error("功能开发中");
@@ -280,4 +312,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.bd {
+  border-right: 1px solid #999;
+}
 </style>
