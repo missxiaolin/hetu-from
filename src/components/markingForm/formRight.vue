@@ -1,7 +1,8 @@
+
 <template>
   <div class="right-box">
-    <el-tabs v-model="activeName" :stretch="true" style="padding: 20px">
-      <el-tab-pane label="字段属性" name="widget" style="height: 70px">
+    <el-tabs v-model="activeName" :stretch="true" style="padding: 10px">
+      <el-tab-pane label="字段属性" name="widget">
         <span>当前选中元素已添加的属性列表props：</span>
         <ul v-if="data.highType === '4'">
           <li
@@ -42,6 +43,80 @@
             </span>
           </li>
         </ul>
+        <el-form label-position="top" size="small">
+          <el-form-item>
+            <el-button
+              type="danger"
+              icon="el-icon-delete"
+              size="medium"
+              @click="handleWidgetDelete"
+              >删除元素</el-button
+            >
+          </el-form-item>
+          <el-form-item label="model（tag_hash）">
+            <template v-if="data.tag === 'el-date-picker'">
+              <el-date-picker
+                @change="change"
+                v-model="data.defaultValue"
+              ></el-date-picker>
+            </template>
+            <template v-else>
+              <el-input v-model="data.model" style="width: 300px"></el-input>
+            </template>
+          </el-form-item>
+          <el-form-item label="类名（className）">
+            <el-input v-model="data.className" style="width: 300px"></el-input>
+          </el-form-item>
+          <el-form-item label="label（label）" v-if="data.isInputForm">
+            <el-input v-model="data.label" style="width: 300px"></el-input>
+          </el-form-item>
+          <!-- 如果是 e-row -->
+          <template v-if="data.isRow">
+            <span>row列数：</span>
+            <el-input-number
+              v-model="rowCount"
+              :min="0"
+              :max="10"
+              :step="1"
+              :step-strictly="true"
+              @change="rowChange"
+            ></el-input-number>
+          </template>
+          <div
+            v-for="(item, index) in widgetProps"
+            :key="index"
+            class="propItem"
+          >
+            <el-form-item :label="item.text">
+              <template v-if="item.type === '1'">
+                <el-radio-group v-model="item.value">
+                  <el-radio-button
+                    v-for="(itm, idx) in item.list"
+                    :key="idx + 1000"
+                    :label="itm"
+                    >{{ itm }}</el-radio-button
+                  >
+                </el-radio-group>
+              </template>
+              <template v-if="item.type === '2'">
+                <el-input v-model="item.value"></el-input>
+              </template>
+              <template v-if="item.type === '3'">
+                <el-input-number v-model="item.value"></el-input-number>
+              </template>
+              <template v-if="item.type === '4'">
+                <!-- 弹窗 - 选择 props 属性 -->
+                <el-button @click="addWidgetProps(item)">添加Props</el-button>
+              </template>
+            </el-form-item>
+            <el-button
+              type="primary"
+              size="small"
+              @click="handlerSetProps(item)"
+              >添加 {{ item.key }} 属性关联</el-button
+            >
+          </div>
+        </el-form>
       </el-tab-pane>
       <el-tab-pane label="方法属性" name="form">
         <template v-if="data.key">
@@ -83,17 +158,16 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { getPropsList } from "../tool/propsList.js";
 import { addDraggerWidget } from "../tool/tool.js";
-import { guid, createHash } from "../tool/tool.js";
-import fnListDialog from "./components/fnListDialog";
+import { getPropsList } from "../tool/propsList.js";
 import TablePropsList from "./components/tablePropsList";
-
+import fnListDialog from "./components/fnListDialog";
+import { guid, createHash } from "../tool/tool.js";
 export default {
   name: "formRight",
   components: {
-    fnListDialog,
     TablePropsList,
+    fnListDialog,
   },
   mixins: [],
   props: {
