@@ -5,7 +5,7 @@
       <div class="content-body">
         <div class="e-row">
           <div class="e-col col-flex">
-            <label class="form-label" style="width:120px;">请选择环境：</label>
+            <label class="form-label" style="width: 120px">请选择环境：</label>
             <div class="form-control">
               <el-select v-model="query.env">
                 <el-option
@@ -22,14 +22,22 @@
         <!-- 注释：重置和查询按钮 -->
         <div class="e-inquire-button text-center">
           <el-button size="small" @click="resetSearch">重置</el-button>
-          <el-button size="small" type="primary" :loading="searchLoading" @click="loadConfigList">查询</el-button>
-          <el-button size="small" type="primary"  @click="gitConfigList">Git代码查询</el-button>
+          <el-button
+            size="small"
+            type="primary"
+            :loading="searchLoading"
+            @click="loadConfigList"
+            >查询</el-button
+          >
+          <el-button size="small" type="primary" @click="gitConfigList"
+            >Git代码查询</el-button
+          >
         </div>
       </div>
       <!-- 注释：表格顶部按钮 - 一般是新建等 -->
       <div class="e-feature-btn">
         <div class="feature-left">
-          <span>共计：{{dataList.length}}个服务</span>
+          <span>共计：{{ dataList.length }}个服务</span>
         </div>
         <div class="feature-right"></div>
       </div>
@@ -46,8 +54,8 @@
           <!-- 注释：test - slot - scope -->
           <template #links="scope">
             <div v-for="item in scope.row.links" :key="item.value">
-              <span>{{item.label}}：</span>
-              <a :href="item.value" target="_blank">{{item.value}}</a>
+              <span>{{ item.label }}：</span>
+              <a :href="item.value" target="_blank">{{ item.value }}</a>
             </div>
           </template>
           <template #url="scope">
@@ -55,19 +63,32 @@
               v-clipboard:success="onCopy"
               v-clipboard:error="onError"
               v-clipboard:copy="scope.row.url"
-            >{{scope.row.url}}</a>
+              >{{ scope.row.url }}</a
+            >
           </template>
           <template #status="scope">
-            <span v-if="scope.row.status === 0" style="color:#bfbfbf;">未验证</span>
-            <span v-else-if="scope.row.status === 1" style="color:#00a854;">访问成功</span>
+            <span v-if="scope.row.status === 0" style="color: #bfbfbf"
+              >未验证</span
+            >
+            <span v-else-if="scope.row.status === 1" style="color: #00a854"
+              >访问成功</span
+            >
             <span v-else>访问失败</span>
           </template>
           <template #data="scope">
-            <span>打包日期：{{scope.row.data.time}} / {{scope.row.data.week}}</span>
+            <span
+              >打包日期：{{ scope.row.data.time }} /
+              {{ scope.row.data.week }}</span
+            >
           </template>
           <!-- 注释：test - 操作 - scope - 一般包含 删除 编辑等 -->
           <template #options="scope">
-            <el-button size="small" type="text" @click="loadConfigFile(scope.row)">验证Config</el-button>
+            <el-button
+              size="small"
+              type="text"
+              @click="loadConfigFile(scope.row)"
+              >验证Config</el-button
+            >
           </template>
         </eb-table>
       </section>
@@ -84,13 +105,13 @@ export default {
   data() {
     return {
       query: {
-        env: ""
+        env: "",
       },
       envList: [
         {
           label: "q",
-          value: "ceshi"
-        }
+          value: "ceshi",
+        },
       ],
       micList: [
         {
@@ -99,9 +120,9 @@ export default {
           links: [
             {
               label: "测试",
-              value: "ceshi"
-            }
-          ]
+              value: "ceshi",
+            },
+          ],
         },
       ], // 微服务列表
       searchLoading: false,
@@ -110,47 +131,47 @@ export default {
         {
           label: "服务名称",
           prop: "name",
-          width: 200
+          width: 200,
         },
         {
           label: "服务三字码",
           prop: "code",
-          width: 100
+          width: 100,
         },
         {
           label: "config.json",
           prop: "url",
-          width: 300
+          width: 300,
         },
         {
           label: "config是否可访问",
           prop: "status",
-          width: 150
+          width: 150,
         },
         {
           label: "config数据",
-          prop: "data"
+          prop: "data",
         },
         {
           label: "验证链接",
-          prop: "links"
+          prop: "links",
         },
         {
           label: "操作",
           prop: "options",
-          width: 200
-        }
+          width: 200,
+        },
       ],
       // 表格显示的数据列表,
       dataList: [],
-      totalCount: 0
+      totalCount: 0,
     };
   },
   watch: {},
   computed: {},
   created() {
     let that = this;
-    window.MIC_SERVER_CONFIG_CALLBACK = function(res) {
+    window.MIC_SERVER_CONFIG_CALLBACK = function (res) {
       console.log(res);
       that.dataList.forEach((item, index) => {
         if (item.code.toUpperCase() === res.moduleName.toUpperCase()) {
@@ -171,7 +192,7 @@ export default {
   },
   methods: {
     getWeek(day) {
-      let days = ''
+      let days = "";
       switch (day) {
         case 1:
           days = "星期一";
@@ -195,23 +216,23 @@ export default {
           days = "星期日";
           break;
       }
-      return days
+      return days;
     },
     // 复制成功 or 失败（提示信息！！！）
-    onCopy: function() {
+    onCopy: function () {
       this.$message.success("复制成功!");
     },
-    onError: function() {
+    onError: function () {
       this.$message.error("复制失败!");
     },
     // 重置方法
     resetSearch() {
       this.query = {
-        env: ""
+        env: "",
       };
     },
-    gitConfigList () {
-      const env = '';
+    gitConfigList() {
+      const env = "";
       // if (!env || env === "" || env.length <= 0) {
       //   this.$message.error("请先选择环境");
       //   return;
@@ -235,18 +256,22 @@ export default {
     // 格式化数据
     formatConfigJson(env, isGit) {
       this.micList.forEach((item, index) => {
-        let url = ''
+        let url = "";
         if (isGit) {
-          url = `http://xxxxxxxx/dist/config.json`
+          url = `http://xxxxxxxx/dist/config.json`;
         } else {
-          url = env + item.value + "/config.json?callback=MIC_SERVER_CONFIG_CALLBACK&times=" + new Date().getTime()
+          url =
+            env +
+            item.value +
+            "/config.json?callback=MIC_SERVER_CONFIG_CALLBACK&times=" +
+            new Date().getTime();
         }
         let links = [];
         if (item.links) {
-          item.links.forEach(itm => {
+          item.links.forEach((itm) => {
             links.push({
               label: itm.label,
-              value: env + itm.value
+              value: env + itm.value,
             });
           });
         }
@@ -256,7 +281,7 @@ export default {
           name: item.label,
           status: 0,
           links: links,
-          data: {}
+          data: {},
         };
         this.$set(this.dataList, index, row);
         this.loadConfigFile(row);
@@ -267,8 +292,8 @@ export default {
       script.src = row.url;
       script.id = row.code;
       document.body.append(script);
-    }
-  }
+    },
+  },
 };
 </script>
 
