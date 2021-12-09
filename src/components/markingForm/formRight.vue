@@ -160,7 +160,7 @@
 import { mapGetters } from "vuex";
 import { addDraggerWidget } from "../tool/tool.js";
 import { getPropsList } from "../tool/propsList.js";
-import TablePropsList from "./components/tablePropsList";
+import TablePropsList from "./components/TablePropsList.vue";
 import fnListDialog from "./components/fnListDialog";
 import { guid, createHash } from "../tool/tool.js";
 export default {
